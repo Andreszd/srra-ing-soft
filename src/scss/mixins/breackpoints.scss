@@ -1,0 +1,12 @@
+@import '../base/breackpoints';
+
+@mixin mobile {
+    @media screen and (max-width: $mobile){
+        @content;
+    }
+}
+@mixin laptop {
+    @media screen and (min-width: $laptop){
+        @content;       
+    }
+}
