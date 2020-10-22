@@ -10,7 +10,6 @@ const FormLogin = ({ setForm }) => {
         email:'',
         password:''
     })
-    console.log('renderizado')
     return (
         <form action="" className="form" onSubmit={ handleSubmit }>
             <div className="form__header">

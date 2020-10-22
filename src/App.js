@@ -1,13 +1,8 @@
 import React from 'react';
-import Auth from './views/Auth';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from './views/Home';
+import RoutesComponents from './routes';
 const App = ()=> {
   return (  
-    <Router>
-        <Route exact path="/" component={Auth}/>  
-        <Route path="/home" component={Home}/>
-    </Router>
+    <RoutesComponents />
   )
 }
 

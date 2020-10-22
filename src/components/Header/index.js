@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpload, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 import '../../scss/blocks/Header.scss'
 import '../../scss/blocks/nav-menu.scss'
@@ -13,9 +14,9 @@ const Header = () => {
             <nav className="header__menu">
                 <ul className="nav-menu">
                     <li className="nav-menu__item">
-                        <a href="#" className="nav-menu__link" >
+                        <Link to="/upload" className="nav-menu__link" >
                            <FontAwesomeIcon icon={ faUpload } className="nav-menu__icon"/>
-                            Upload</a>
+                            Upload</Link>
                     </li>
                     <li className="nav-menu__item">
                         <a href="#" className="nav-menu__link nav-menu__link--background">

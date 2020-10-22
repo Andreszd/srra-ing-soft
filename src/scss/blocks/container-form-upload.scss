@@ -1,0 +1,18 @@
+@import '../base/colors';
+.content-form-upload{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    &__text{
+        color: $white-secundary;
+    }
+    &__document-preview{
+       display: flex;
+       justify-content: space-between;
+       padding: 1rem;
+       border: 1px solid $white-secundary;
+    }
+    &__title{
+        margin-bottom: 0;
+    }
+}
