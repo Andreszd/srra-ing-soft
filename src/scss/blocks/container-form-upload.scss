@@ -8,9 +8,8 @@
     }
     &__document-preview{
        display: flex;
-       justify-content: space-between;
+       justify-content: space-evenly;
        padding: 1rem;
-       border: 1px solid $white-secundary;
     }
     &__title{
         margin-bottom: 0;

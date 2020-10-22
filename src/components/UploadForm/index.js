@@ -30,9 +30,9 @@ const ContainerUploadForm = () => {
                 research papers, legal documents, and more</p>
                 {
                      file ?
-                        <div className="form-upload__document-preview">   
+                        <div className="content-form-upload__document-preview">  
                             <DocumentPreview file={file}/>                            
-                            <FormUpload />                            
+                            <FormUpload file={file}/>                            
                         </div>   
                     :
                     <div {...getRootProps()} className="drop-zone">
