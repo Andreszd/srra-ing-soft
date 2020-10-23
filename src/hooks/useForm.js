@@ -8,7 +8,6 @@ const useForm = (initialState = null) => {
         const res = objProps.filter(value => value.length === 0)
         if(res.length > 1) {
             console.log('error..')
-               
         }else{
 
         }
@@ -19,6 +18,6 @@ const useForm = (initialState = null) => {
             [e.target.name] : e.target.value
         })
     }
-    return [ handleSubmit, handleInputChange ];
+    return [ handleSubmit, handleInputChange, setInputs ];
 }
 export default useForm;

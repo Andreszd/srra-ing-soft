@@ -9,8 +9,11 @@ import { useDropzone } from 'react-dropzone'
 import DocumentPreview from '../DocumentPreview'
 import FormUpload from '../FormUpload'
 
+import PopUpMessage from '../PopUpMessage'
+
 const ContainerUploadForm = () => {
     const [file, setFile] = useState(null)
+
     const { getRootProps, getInputProps, open } = useDropzone({
         accept: "application/pdf",
         onDrop: acceptedFile =>{
@@ -24,6 +27,7 @@ const ContainerUploadForm = () => {
     })
     return ( 
         <div className="container__form-upload">
+            <PopUpMessage />
             <div action="" className="content-form-upload">
                 <h2 className="content-form-upload__title">Contribute to the Comunity</h2>
                 <p className="content-form-upload__text">Publish to the world Presentations, 
