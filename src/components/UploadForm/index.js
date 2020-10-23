@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, useContext } from 'react'
 
 import '../../scss/blocks/container-form-upload.scss'
 import '../../scss/blocks/drop-zone.scss'
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
 import { useDropzone } from 'react-dropzone'
+import MessageContext from '../../context/Message/MessageContext'
 import DocumentPreview from '../DocumentPreview'
 import FormUpload from '../FormUpload'
 
@@ -14,16 +15,26 @@ import PopUpMessage from '../PopUpMessage'
 const ContainerUploadForm = () => {
     const [file, setFile] = useState(null)
 
+    const { setMessage } = useContext(MessageContext)
+
     const { getRootProps, getInputProps, open } = useDropzone({
         accept: "application/pdf",
         onDrop: acceptedFile =>{
+            if (acceptedFile.length === 0) return
             const [File] = acceptedFile
             setFile(
                 Object.assign(File, {
                     preview: URL.createObjectURL(File)
                 })
             )
-        }
+        },
+        onDropRejected: deniedFile =>{
+            const { errors } = deniedFile[0]
+            const { message }= errors[0]
+             setMessage({
+                message
+            }) 
+        } 
     })
     return ( 
         <div className="container__form-upload">
@@ -36,7 +47,7 @@ const ContainerUploadForm = () => {
                      file ?
                         <div className="content-form-upload__document-preview">  
                             <DocumentPreview file={file}/>                            
-                            <FormUpload file={file}/>                            
+                            <FormUpload file={file} setFile={setFile}/>                            
                         </div>   
                     :
                     <div {...getRootProps()} className="drop-zone">

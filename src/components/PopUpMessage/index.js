@@ -29,7 +29,6 @@ const PopUpMessage = () => {
                     </button>
                 </div>
             </CSSTransition>
-
             :null
         }
         </>

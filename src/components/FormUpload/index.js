@@ -1,37 +1,34 @@
-import React,{ useRef, useEffect, useState, useContext } from 'react'
+import React,{useRef, useState, useContext } from 'react'
 import MessageContext from '../../context/Message/MessageContext'
-import { isEmpty } from '../../utils'
+import { verifyFields } from '../../utils'
 
 
 import '../../scss/blocks/form-upload.scss'
-const FormUpload = ({ file }) => {
+const FormUpload = ({ file, setFile }) => {
     const inputRef = useRef(null)
 
     const { setMessage } = useContext(MessageContext)
 
     const initialState = {
-        title:'',
+        title: file.name.split('.')[0],
         teacher:'',
         subject:'',
         description:''
     }    
 
-    useEffect(()=>{
-        const input = inputRef.current
-        const { name } = file
-        input.value = name.split('.')[0]        
-    },[])
-
     const [form, setForm] = useState(initialState)
     const handleSubmit = e =>{
         e.preventDefault()
-        if(isEmpty(form)){
+        
+        const alert = verifyFields(form)
+        if(alert.length > 0){
             setMessage({
-                message:'Rellene todos los campos'
+                message: alert
             })
         }else{
             console.log('enviando')
         }
+        
     }
     const handleInputChange = e =>{
         setForm({
@@ -39,12 +36,16 @@ const FormUpload = ({ file }) => {
             [e.target.name]: e.target.value
         })
     }
+    const handleButtonCancel = e =>{
+        setFile(null)
+    }
     return ( 
         <form action="" className="form-upload" onSubmit={handleSubmit}>
            <label htmlFor="title-form" className="form-upload__label">Title</label>
            <input type="text" ref={inputRef} name="title" className="form-upload__input"
+            value={form.title}
             onChange={handleInputChange}
-           id="title-form" />  
+            id="title-form" />  
 
            <label htmlFor="" className="form-upload__label">Subject</label>
            <select name="subject" id=""  className="form-upload__input" onChange={handleInputChange}>
@@ -61,7 +62,7 @@ const FormUpload = ({ file }) => {
            onChange={handleInputChange}
            id="description-form" className="form-upload__text-area"></textarea>
            <button type="submit" className="form-upload__button">Done</button>
-           <button className="form-upload__button">Cancel</button>
+           <button className="form-upload__button" onClick={handleButtonCancel}>Cancel</button>
         </form>
     );
 }
