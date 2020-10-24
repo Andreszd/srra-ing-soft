@@ -7,10 +7,10 @@ import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
 import { useDropzone } from 'react-dropzone'
 import MessageContext from '../../context/Message/MessageContext'
-import DocumentPreview from '../DocumentPreview'
-import FormUpload from '../FormUpload'
+import DocumentPreview from '../../components/DocumentPreview'
+import FormUpload from '../../components/FormUpload'
 
-import PopUpMessage from '../PopUpMessage'
+import PopUpMessage from '../../components/PopUpMessage'
 
 const ContainerUpload = () => {
     const [file, setFile] = useState(null)

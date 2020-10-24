@@ -1,28 +1,33 @@
 import React,{ useContext } from 'react'
-import { BrowserRouter as Router , Route } from 'react-router-dom'
-import Auth from '../views/Auth';
-import Home from '../views/Home';
+import { Redirect } from 'react-router-dom'
 import authContext from '../context/Auth/authContext'
-const RoutesComponents = () => {
-    const { autenticado } = useContext(authContext)
+import Home from '../views/Home'
+const ProtectedRoute = ({ children, path }) => {
+    const { authenticate } = useContext(authContext)
+    switch(path){
+        case '/auth':
+            return (
+            <>
+                {
+                    !authenticate ?
+                        <Redirect to="/auth"/>
+                    : children
 
-    return (
-        <>
-        {/* {
-            autenticacion ?
-            (<BrowserRouter>
-                <Route path="/login" component={Auth}/>  
-                <Route exact path="/" component={Home}/>
-            </BrowserRouter>)
-            : <Home/>
-        } */}
-            <Router>
-                <Route exact path="/login" component={Auth}/>  
-                <Route path="/" component={Home}/>
-            </Router>
+                }
+            </>
+            );
+        case '/Home':
+            return (
+                <>
+                    {
+                        !authenticate ?
+                            children
+                        : <Redirect to ="/Home"/>
+                    }
+                </>
+            )
 
-        </>
-    );
+    }
 }
  
-export default RoutesComponents;
+export default ProtectedRoute;

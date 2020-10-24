@@ -1,23 +1,21 @@
-import React, { useContext, useEffect } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from '../../components/Header';
-import UploadForm from '../../components/ContainerUpload';
+import UploadForm from '../UploadDocument';
 import MessageState from '../../context/Message/MessageState';
-import AuthContext from '../../context/Auth/authContext'
-const Home = ({ history }) => {
-    const { autenticado } = useContext(AuthContext)
-     useEffect(()=>{
-        if(!autenticado){
-            history.push('/Auth')
-            return
-        }   
-    },[autenticado]) 
+import Lobby from '../Lobby';
+const Home = () => {
+     
     return (
        <>
         <MessageState>
             <BrowserRouter>
                 <Header />
-                <Route path="/upload" component={UploadForm}/>
+                <Switch>
+                    <Route exact path='/Home/Principal' component={Lobby}/>
+                    <Route path="/Home/upload" component={UploadForm}/>
+                </Switch>
+                
             </BrowserRouter>
         </MessageState>   
        </> 

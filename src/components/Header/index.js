@@ -14,7 +14,7 @@ const Header = () => {
             <nav className="header__menu">
                 <ul className="nav-menu">
                     <li className="nav-menu__item">
-                        <Link to="/upload" className="nav-menu__link" >
+                        <Link to="/Home/upload" className="nav-menu__link" >
                            <FontAwesomeIcon icon={ faUpload } className="nav-menu__icon"/>
                             Upload</Link>
                     </li>

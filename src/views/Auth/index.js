@@ -3,15 +3,8 @@ import FormLogin from '../../components/FormLogin'
 import FormRegister from '../../components/FormRegister'
 import AuthContext from '../../context/Auth/authContext'
 import '../../scss/blocks/Container.scss'
-const Auth = ({history}) => {
+const Auth = () => {
     const [form, setForm] = useState(true)
-    const { autenticado } = useContext(AuthContext)
-    
-    useEffect(() => {
-        if(autenticado){
-            history.push('/')
-        }
-    }, [autenticado])
 
     return (
         <div className="container--form">

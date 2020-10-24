@@ -5,16 +5,16 @@ import AuthReducer from './authReducer'
 const AuthState = ({ children }) => {
     const initialState = {
         usuario: null,
-        autenticado: true,
+        authenticate: true,
         rol: null
     }
     const [state, dispatch] = useReducer(AuthReducer, initialState)
-    const {usuario, autenticado} = initialState
+    const { authenticate } = initialState
 
     return ( 
         <AuthContext.Provider
             value={{
-                autenticado
+                authenticate
             }}
         >
             {children}
