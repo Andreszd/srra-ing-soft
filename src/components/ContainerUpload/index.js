@@ -12,7 +12,7 @@ import FormUpload from '../FormUpload'
 
 import PopUpMessage from '../PopUpMessage'
 
-const ContainerUploadForm = () => {
+const ContainerUpload = () => {
     const [file, setFile] = useState(null)
 
     const { setMessage } = useContext(MessageContext)
@@ -62,4 +62,4 @@ const ContainerUploadForm = () => {
     );
 }
  
-export default ContainerUploadForm;
+export default ContainerUpload;
