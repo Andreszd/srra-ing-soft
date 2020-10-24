@@ -5,7 +5,7 @@ import AuthReducer from './authReducer'
 const AuthState = ({ children }) => {
     const initialState = {
         usuario: null,
-        authenticate: true,
+        authenticate: false,
         rol: null
     }
     const [state, dispatch] = useReducer(AuthReducer, initialState)

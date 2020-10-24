@@ -3,7 +3,6 @@ import React,{ useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock, faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
 
-import { toast } from 'react-toastify'
 import '../../scss/blocks/Form.scss'
 const FormRegister = ({ setForm }) => {
     const [user, setUser ] = useState({
@@ -20,12 +19,7 @@ const FormRegister = ({ setForm }) => {
     }
     const sendForm = e =>{
         e.preventDefault()
-        const { user_name, full_name, email, password } = user
-        if(user_name.trim().length === 0 || full_name.trim().length === 0 || email.trim().length === 0 || password.trim().length === 0){
-            toast.warning('Rellene todos los campos')
-        }else{
 
-        }
     }
     return ( 
         <form action="" className="form" onSubmit={sendForm}>

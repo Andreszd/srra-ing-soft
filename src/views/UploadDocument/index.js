@@ -15,7 +15,7 @@ import PopUpMessage from '../../components/PopUpMessage'
 const ContainerUpload = () => {
     const [file, setFile] = useState(null)
 
-    const { setMessage } = useContext(MessageContext)
+    const { showAlert } = useContext(MessageContext)
 
     const { getRootProps, getInputProps, open } = useDropzone({
         accept: "application/pdf",
@@ -31,9 +31,7 @@ const ContainerUpload = () => {
         onDropRejected: deniedFile =>{
             const { errors } = deniedFile[0]
             const { message }= errors[0]
-             setMessage({
-                message
-            }) 
+            showAlert(message, false)
         } 
     })
     return ( 

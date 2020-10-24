@@ -2,12 +2,11 @@ import React,{useRef, useState, useContext } from 'react'
 import MessageContext from '../../context/Message/MessageContext'
 import { verifyFields } from '../../utils'
 
-
 import '../../scss/blocks/form-upload.scss'
 const FormUpload = ({ file, setFile }) => {
     const inputRef = useRef(null)
 
-    const { setMessage } = useContext(MessageContext)
+    const { showAlert } = useContext(MessageContext)
 
     const initialState = {
         title: file.name.split('.')[0],
@@ -22,9 +21,7 @@ const FormUpload = ({ file, setFile }) => {
         
         const alert = verifyFields(form)
         if(alert.length > 0){
-            setMessage({
-                message: alert
-            })
+            showAlert(alert, false)
         }else{
             console.log('enviando')
         }

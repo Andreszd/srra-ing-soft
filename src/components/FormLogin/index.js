@@ -6,10 +6,16 @@ import useForm from '../../hooks/useForm'
 import { Link } from 'react-router-dom'
 import '../../scss/blocks/Form.scss'
 const FormLogin = ({ setForm }) => {
-    const [ handleSubmit, handleInputChange ] = useForm({
+    const [ handleInputChange, inputsErrors, inputs ] = useForm({
         email:'',
         password:''
     })
+    const handleSubmit = e =>{
+        e.preventDefault()
+        const { email } = inputs
+        console.log(email)
+        console.log(inputsErrors())
+    }
     return (
         <form action="" className="form" onSubmit={ handleSubmit }>
             <div className="form__header">

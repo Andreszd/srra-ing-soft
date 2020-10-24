@@ -16,3 +16,6 @@ export const verifyFields = form =>{
     }
     return message
 }
+export const isEmail = email =>{
+    console.log('verify with regular expresion')   
+}
