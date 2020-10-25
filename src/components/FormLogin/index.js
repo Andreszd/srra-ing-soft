@@ -1,21 +1,30 @@
-import React from 'react'
+import React,{ useContext } from 'react'
+import useForm from '../../hooks/useForm'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
-import useForm from '../../hooks/useForm'
+
+import alertContext from '../../context/Message/MessageContext'
+import authContext from '../../context/Auth/authContext'
 
 import { Link } from 'react-router-dom'
 import '../../scss/blocks/Form.scss'
-const FormLogin = ({ setForm }) => {
+const FormLogin = ({ setForm, history }) => {
     const [ handleInputChange, inputsErrors, inputs ] = useForm({
         email:'',
         password:''
     })
+
+    const { showAlert } = useContext(alertContext)
+    const { authenticateUser } = useContext(authContext)
+    
     const handleSubmit = e =>{
         e.preventDefault()
-        const { email } = inputs
-        console.log(email)
-        console.log(inputsErrors())
+        const errors = inputsErrors()
+        if( errors ) return showAlert(errors, false)
+        authenticateUser(inputs)
     }
+
     return (
         <form action="" className="form" onSubmit={ handleSubmit }>
             <div className="form__header">

@@ -1,14 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from '../../components/Header';
 import UploadForm from '../UploadDocument';
-import MessageState from '../../context/Message/MessageState';
 import Lobby from '../Lobby';
 const Home = () => {
      
     return (
        <>
-        <MessageState>
             <BrowserRouter>
                 <Header />
                 <Switch>
@@ -17,7 +15,6 @@ const Home = () => {
                 </Switch>
                 
             </BrowserRouter>
-        </MessageState>   
        </> 
     );
 }

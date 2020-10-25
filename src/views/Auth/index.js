@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+
 import FormLogin from '../../components/FormLogin'
 import FormRegister from '../../components/FormRegister'
-import '../../scss/blocks/Container.scss'
-const Auth = () => {
-    const [form, setForm] = useState(true)
+import AuthAlert from '../../components/PopUpMessage/AuthAlert'
+import authContext from '../../context/Auth/authContext'
 
+import '../../scss/blocks/Container.scss'
+const Auth = ({ history }) => {
+    const [form, setForm] = useState(true)
+    const { authenticate } = useContext(authContext)
+    useEffect(()=>{
+        if(authenticate === true){
+            history.push('/home')
+        }
+    },[authenticate])
     return (
         <div className="container--form">
+            <AuthAlert />
             <div className="container__form">
                 {
                     form ?

@@ -1,7 +1,13 @@
+import { USER_AUTHENTICATE } from '../../utils/types'
+
 const AuthReducer = (state, action) =>{
     switch(action.type){
-        case '':
-            break;
+        case USER_AUTHENTICATE:
+            return {
+                ...state,
+                user: action.payload,
+                authenticate: true
+            }
     }
 }
 export default AuthReducer
