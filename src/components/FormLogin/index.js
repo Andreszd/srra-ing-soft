@@ -16,13 +16,13 @@ const FormLogin = ({ setForm, history }) => {
     })
 
     const { showAlert } = useContext(alertContext)
-    const { authenticateUser } = useContext(authContext)
+    const { signIn } = useContext(authContext)
     
     const handleSubmit = e =>{
         e.preventDefault()
         const errors = inputsErrors()
         if( errors ) return showAlert(errors, false)
-        authenticateUser(inputs)
+        signIn(inputs)
     }
 
     return (
@@ -41,7 +41,7 @@ const FormLogin = ({ setForm, history }) => {
                 </i>
             </div>
             <div className="form-input">
-                <input type="password" placeholder="Password"
+                <input type="password" placeholder="Password" autoComplete="on"
                 onChange ={handleInputChange}
                 className="form-input__item" name="password"/>
                 <i className="form-input__icon">

@@ -1,30 +1,44 @@
 import React,{ useReducer } from 'react'
 
-import { USER_AUTHENTICATE } from '../../utils/types'
+import { USER_AUTHENTICATE,
+        ERROR_AUTHENTICATE_USER } from '../../utils/types'
 
 import AuthContext from './authContext'
 import AuthReducer from './authReducer'
+import clientAxios from '../../config/axios'
 
 const AuthState = ({ children }) => {
     const initialState = {
         user: null,
         authenticate: false,
-        rol: null
+        rol: null,
+        messageError:null
     }
     const [state, dispatch] = useReducer(AuthReducer, initialState)
-    const { authenticate } = state
+    const { authenticate, messageError, rol } = state
 
-    const authenticateUser = user =>{
-        dispatch({
-            type: USER_AUTHENTICATE, 
-            payload: user
-        })
+    const signIn = async (user) =>{
+        try {
+            const response = await clientAxios.post('api/login-user', user)
+            
+            dispatch({
+                type: USER_AUTHENTICATE, 
+                payload: response.data
+            })
+        } catch (error) {
+            dispatch({
+                type: ERROR_AUTHENTICATE_USER,
+                payload: error.response.data.message
+            })
+        }
     }
     return ( 
         <AuthContext.Provider
             value={{
+                rol,
                 authenticate,
-                authenticateUser
+                signIn,
+                messageError
             }}
         >
             {children}

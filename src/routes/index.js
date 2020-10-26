@@ -1,33 +1,46 @@
 import React,{ useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import authContext from '../context/Auth/authContext'
-import Home from '../views/Home'
 const ProtectedRoute = ({ children, path }) => {
-    const { authenticate } = useContext(authContext)
+    const { authenticate, rol } = useContext(authContext)
     switch(path){
         case '/auth':
             return (
             <>
                 {
-                    !authenticate ?
-                        <Redirect to="/auth"/>
-                    : children
+                        !authenticate ?
+                            children
+                        : 
+                        rol === 'admin' ?
+                        <Redirect to ="/admin"/>
+                        : <Redirect to ="/home"/>
 
                 }
             </>
             );
-        case '/Home':
+        case '/admin':
+        return (
+            <>
+                {
+                    rol === 'admin' ?
+                        children    
+                    :<Redirect to='/auth'/>
+                } 
+            </>
+        )
+        case '/home':
             return (
                 <>
                     {
-                        !authenticate ?
-                            children
-                        : <Redirect to ="/Home"/>
+                    !authenticate ?
+                        <Redirect to="/auth"/>
+                    : children
                     }
                 </>
             )
-
+        
     }
+    
 }
  
 export default ProtectedRoute;

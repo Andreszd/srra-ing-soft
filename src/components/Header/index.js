@@ -19,7 +19,7 @@ const Header = () => {
                             Upload</Link>
                     </li>
                     <li className="nav-menu__item">
-                        <a href="#" className="nav-menu__link nav-menu__link--background">
+                        <a href="#ola" className="nav-menu__link nav-menu__link--background">
                             <FontAwesomeIcon icon={ faUserCircle } className="nav-menu__icon"/>
                         </a>
                     </li>

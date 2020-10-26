@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from 'axios' 
 
 const clientAxios = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_ULR
+    baseURL: 'http://localhost:4000/'
 })
 
 export default clientAxios
