@@ -3,7 +3,7 @@ import MessageContext from '../../context/Message/MessageContext'
 import { verifyFields } from '../../utils'
 
 import '../../scss/blocks/form-upload.scss'
-const FormUpload = ({ file, setFile }) => {
+const FormUpoad = ({ file, setFile }) => {
     const inputRef = useRef(null)
 
     const { showAlert } = useContext(MessageContext)
@@ -12,7 +12,8 @@ const FormUpload = ({ file, setFile }) => {
         title: file.name.split('.')[0],
         teacher:'',
         subject:'',
-        description:''
+        description:'',
+        url: file.preview
     }    
 
     const [form, setForm] = useState(initialState)

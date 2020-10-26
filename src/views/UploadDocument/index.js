@@ -21,6 +21,7 @@ const ContainerUpload = () => {
         accept: "application/pdf",
         onDrop: acceptedFile =>{
             if (acceptedFile.length === 0) return
+            console.log(acceptedFile)
             const [File] = acceptedFile
             setFile(
                 Object.assign(File, {
