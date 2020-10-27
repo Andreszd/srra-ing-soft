@@ -3,7 +3,7 @@ import MessageContext from '../../context/Message/MessageContext'
 import { verifyFields } from '../../utils'
 
 import '../../scss/blocks/form-upload.scss'
-const FormUpoad = ({ file, setFile }) => {
+const FormUpload = ({ file, setFile }) => {
     const inputRef = useRef(null)
 
     const { showAlert } = useContext(MessageContext)
