@@ -1,16 +1,20 @@
 import React,{ useReducer } from 'react'
-import MessageContext from './MessageContext'
+
+import AlertContext from './AlertContext'
 import alertReducer from './AlertReducer'
+
+import { SHOW_ALERT, HIDDEN_ALERT } from '../../utils/types'
 const MessageState = ({ children })=>{
     const initialState = {
-        message: null
+        message: null,
+        typeAlert : false
     }
     const [state, dispatch] = useReducer(alertReducer, initialState)
 
-    const { message } = state
+    const { message, typeAlert } = state
     const showAlert =( message, type )=>{
         dispatch({
-            type: 'SHOW_ALERT',
+            type: SHOW_ALERT,
             payload: {
                 message,
                 type
@@ -22,20 +26,21 @@ const MessageState = ({ children })=>{
     }
     const hiddenAlert =()=>{
         dispatch({
-            type: 'HIDDEN_ALERT'
+            type: HIDDEN_ALERT
         })   
     }
     return(
-        <MessageContext.Provider 
+        <AlertContext.Provider 
             value={{
-                showAlert,
+                typeAlert,
                 message,
+                showAlert,
                 hiddenAlert
 
             }}
         >
             {children}
-        </MessageContext.Provider>        
+        </AlertContext.Provider>        
     )
 }
 export default MessageState

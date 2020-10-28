@@ -4,12 +4,12 @@ import useForm from '../../hooks/useForm'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 
-import alertContext from '../../context/Message/MessageContext'
+import alertContext from '../../context/Alert/AlertContext'
 import authContext from '../../context/Auth/authContext'
 
 import { Link } from 'react-router-dom'
 import '../../scss/blocks/Form.scss'
-const FormLogin = ({ setForm, history }) => {
+const FormLogin = ({ setForm }) => {
     const [ handleInputChange, inputsErrors, inputs ] = useForm({
         email:'',
         password:''

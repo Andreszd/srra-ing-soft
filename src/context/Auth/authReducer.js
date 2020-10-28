@@ -1,5 +1,6 @@
 import { USER_AUTHENTICATE,
         ERROR_AUTHENTICATE_USER,
+        ERROR_SIGN_IN_USER, 
         SIGN_IN_USER  } from '../../utils/types'
 
 const AuthReducer = (state, action) =>{
@@ -11,7 +12,10 @@ const AuthReducer = (state, action) =>{
                 authenticate: true,
                 rol: action.payload.rol
             }
-        case ERROR_AUTHENTICATE_USER :
+            case ERROR_AUTHENTICATE_USER :
+            case ERROR_SIGN_IN_USER:
+            const token = localStorage.getItem('token')
+            if (token) localStorage.removeItem('token')
             return {
                 ...state,
                 messageError: action.payload

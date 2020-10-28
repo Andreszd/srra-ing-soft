@@ -16,6 +16,9 @@ export const verifyFields = form =>{
     }
     return message
 }
+export const validateStringSize = (number = 0, cad = '')=>{
+    return cad.trim().length > number   
+}
 export const isEmail = email =>{
     console.log('verify with regular expresion')   
 }

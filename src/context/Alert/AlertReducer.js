@@ -1,15 +1,17 @@
+import { SHOW_ALERT, HIDDEN_ALERT } from '../../utils/types'
 
 const AlertReducer = (state, action) =>{
     switch(action.type){
-        case 'SHOW_ALERT':
+        case SHOW_ALERT:
             return {
                 ...state,
                 message: action.payload.message,
-                type: action.payload.type
+                typeAlert: action.payload.type
             }
-        case 'HIDDEN_ALERT':
+        case HIDDEN_ALERT: 
             return {
-                message: null
+                message: null,
+                typeAlert: false
             }
     }
 }

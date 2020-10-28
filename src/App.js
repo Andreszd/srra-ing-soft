@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 
 import AuthState from './context/Auth/authState'
-import MessageState from './context/Message/MessageState'
+import AlertState from './context/Alert/AlertState'
 
 import ProtectedRoute from './routes';
 import Admin from './views/Admin';
@@ -11,7 +11,7 @@ import Home from './views/Home';
 const App = ()=> {
   return (  
     <AuthState>
-      <MessageState>
+      <AlertState>
         <Router>
           <Switch>
             <Route exact path="/auth" 
@@ -38,7 +38,7 @@ const App = ()=> {
             <Redirect path="/**" to="/auth"/>
           </Switch>
         </Router>
-      </MessageState>
+      </AlertState>
     </AuthState>
   )
 }

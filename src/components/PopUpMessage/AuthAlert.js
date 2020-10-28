@@ -2,7 +2,7 @@ import React,{ useContext } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import '../../scss/blocks/alert.scss'
 
-import alertContext from '../../context/Message/MessageContext'
+import alertContext from '../../context/Alert/AlertContext'
 import authContext from '../../context/Auth/authContext'
 const AuthAlert = () => {
     const { message } = useContext(alertContext)

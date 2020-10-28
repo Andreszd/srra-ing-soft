@@ -1,5 +1,5 @@
 import React,{ useContext } from 'react'
-import MessageContext from '../../context/Message/MessageContext'
+import alertContext from '../../context/Alert/AlertContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -7,11 +7,8 @@ import { CSSTransition } from 'react-transition-group'
 
 import '../../scss/blocks/alert.scss'
 const PopUpMessage = () => {
-    const { message, hiddenAlert} = useContext(MessageContext)
+    const { message,typeAlert, hiddenAlert} = useContext(alertContext)
 
-    const handleClosed = e =>{
-        hiddenAlert()
-    }    
     return ( 
         <>
         {
@@ -22,9 +19,9 @@ const PopUpMessage = () => {
                 classNames="alert-transition" 
                 timeout={300}
             >
-                <div className="alert">
+                <div className={ typeAlert ? 'alert alert--green' : 'alert alert--red' }>
                     <p className="alert__text">{message}</p>
-                    <button className="alert__button" onClick={handleClosed}>
+                    <button className="alert__button" onClick={()=> hiddenAlert()}>
                         <FontAwesomeIcon className="alert__icon" icon={ faTimesCircle } />
                     </button>
                 </div>

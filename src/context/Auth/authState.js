@@ -1,7 +1,7 @@
 import React,{ useReducer } from 'react'
-
 import { USER_AUTHENTICATE,
         ERROR_AUTHENTICATE_USER,
+        ERROR_SIGN_IN_USER,
         SIGN_IN_USER } from '../../utils/types'
 
 import AuthContext from './authContext'
@@ -21,7 +21,7 @@ const AuthState = ({ children }) => {
 
     const signIn = async (user) =>{
         try {
-            const response = await clientAxios.post('api/login-user', user)
+            const response = await clientAxios.post('api/auth/login-user', user)
             //console.log(response)
             dispatch({
                 type: SIGN_IN_USER, 
@@ -29,11 +29,9 @@ const AuthState = ({ children }) => {
             })
             authenticateUser()
         } catch (error) {
-            if(!error) return
-
-            console.log(error)
+            if(!error.response) return console.log(error)
             dispatch({
-                type: ERROR_AUTHENTICATE_USER,
+                type: ERROR_SIGN_IN_USER,
                 payload: error.response.data.message
             }) 
         }
@@ -44,14 +42,17 @@ const AuthState = ({ children }) => {
             defineHeaders(token)
         }
         try {
-            const response  = await clientAxios.get('api/auth') 
-            console.log(response)
+            const response  = await clientAxios.get('api/info-user') 
             dispatch({
                 type: USER_AUTHENTICATE,
                 payload: response.data.user
             })
         } catch (error) {
-           console.log(error.response.data)       
+            if(!error.response) return null
+            dispatch({
+                type: ERROR_AUTHENTICATE_USER
+            })
+           console.log(error)       
         }
     }
     return ( 
@@ -59,8 +60,9 @@ const AuthState = ({ children }) => {
             value={{
                 rol,
                 authenticate,
+                messageError,
                 signIn,
-                messageError
+                authenticateUser
             }}
         >
             {children}

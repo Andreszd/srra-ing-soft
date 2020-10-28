@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
 import { useDropzone } from 'react-dropzone'
-import MessageContext from '../../context/Message/MessageContext'
+import alertContext from '../../context/Alert/AlertContext'
 import DocumentPreview from '../../components/DocumentPreview'
 import FormUpload from '../../components/FormUpload'
 
@@ -15,10 +15,12 @@ import PopUpMessage from '../../components/PopUpMessage'
 const ContainerUpload = () => {
     const [file, setFile] = useState(null)
 
-    const { showAlert } = useContext(MessageContext)
+    const { showAlert } = useContext(alertContext)
 
     const { getRootProps, getInputProps, open } = useDropzone({
         accept: "application/pdf",
+        minSize:0,
+        maxSize: 1048576,
         onDrop: acceptedFile =>{
             if (acceptedFile.length === 0) return
             console.log(acceptedFile)
@@ -46,15 +48,18 @@ const ContainerUpload = () => {
                      file ?
                         <div className="content-form-upload__document-preview">  
                             <DocumentPreview file={file}/>                            
-                            <FormUpload file={file} setFile={setFile}/>                            
+                            <FormUpload file={file} setFile={setFile} />                            
                         </div>   
                     :
+                    <>
                     <div {...getRootProps()} className="drop-zone">
                         <FontAwesomeIcon icon={faFilePdf} className="drop-zone__icon"/>
                         <input { ...getInputProps() }/>
                         <button type="button" onClick={open} className="drop-zone__button">Select file </button>
                         <p className="drop-zone__text">or drag & drop</p>
                     </div>
+                        <p className="content-form-upload__text">Supported file types: Only Pdf's</p>
+                    </>
                 }
             </div>
         </div>
