@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Project made in asignature ING SOFTWARE using REACT with connecting to API created with EXPRESS
+Project made in asignature ING SOFTWARE using REACT with connecting to [API] (https://github.com/Andreszd/srra-server) created with EXPRESS.
 
 ## Available Scripts
 
